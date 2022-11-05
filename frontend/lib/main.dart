@@ -66,9 +66,9 @@ class AuthChecker extends ConsumerWidget {
     return authChecker.when(
       data: (data) {
         if (data) {
-          return const HomePage();
+          return  HomePage();
         }
-        return const HomePage();
+        return  HomePage();
       },
       error: (error, stackTrace) {
         return ErrorScreen(error: error, stackTrace: stackTrace);

@@ -26,7 +26,7 @@ final routerProvider = Provider<GoRouter>(
         GoRoute(
           name: 'HomePage',
           path: HomePage.routename,
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) =>  HomePage(),
         )
       ],
 
