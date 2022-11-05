@@ -9,8 +9,20 @@
 ![4ee01701-40ee-437a-97f9-4dba9c63e93f](https://user-images.githubusercontent.com/74452705/200137653-faf746f9-ee4c-4189-a14f-d48c68544764.jpeg)
 
  SyncFit is a health memo app with a lot more to offer...
-
-
+  
+ ![](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+ ![](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+ ![](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+ ![](https://img.shields.io/badge/Keras-FF0000?style=for-the-badge&logo=keras&logoColor=white)
+ ![](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+ ![](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+ ![](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+ ![](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+ ![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+ ![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+ ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+ ![](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+  
 ## Table of Contents
 
 - [Inspiration](#inspiration)
@@ -50,7 +62,8 @@ When consumers are feeling uneasy or when their smartwatch detects a worrying ch
   - JavaScript
   - Dart
   - Python  
-
+  
+  
 ## Challenges we ran into?
 
 Even though our team had knowledge of various techstacks, we still had quite a hurdles.
