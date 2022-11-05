@@ -8,7 +8,19 @@ class scrap:
         return {"id": 'overview'}
 
     def recipes(self) -> dict:
-        return {"id": 'recipes'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        }
+        r = requests.get(
+            'https://gymbeam.com/blog/fitness-recipes/', headers=headers)
+        soup = bs4.BeautifulSoup(r.text, 'html.parser')
+        data = {
+            'recipes of the day': []
+        }
+        for a in soup.find_all("a", class_="btn btn-primary"):
+            link = a.get("href")
+            data['recipes of the day'].append(link)
+        return data
 
     def articles(self) -> dict:
         headers = {
