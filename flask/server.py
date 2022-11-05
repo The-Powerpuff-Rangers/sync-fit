@@ -13,3 +13,6 @@ def recipes():
 @app.route('/api/v1/articles/')
 def articles():
     return scrap().articles()
+
+if __name__ == "__main__":
+    app.run(debug=True)
