@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ActivityCards extends ConsumerWidget {
-  const ActivityCards({super.key});
+class ActivityCard extends ConsumerWidget {
+  const ActivityCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
