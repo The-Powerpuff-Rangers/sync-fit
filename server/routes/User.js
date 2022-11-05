@@ -3,6 +3,7 @@ const router = express.Router();
 const { getAccessToken, userData } = require("../utils/Api.js");
 const User = require("../models/User");
 
+// Checking Api EndPoint
 router.get("/", (req, res) => {
   res.status(200).json({ ok: "hi" });
 });
