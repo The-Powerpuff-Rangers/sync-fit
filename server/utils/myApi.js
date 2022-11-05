@@ -50,3 +50,12 @@ const getMyWater = async(userId,date)=>{
         
     }
 }
+
+const getMySleep = async(userId,date)=>{
+    try {
+        const mySleep = await axios.get("http://localhost:8080/api/fitness/sleep");
+        return mySleep;
+    } catch (error) {
+        
+    }
+}
