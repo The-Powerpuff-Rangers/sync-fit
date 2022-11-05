@@ -14,15 +14,15 @@ const {
 } = require("../utils/Api");
 
 router.get("/heartrate", async (req, res) => {
-  // try {
-  const { userId } = req.body;
-  const user = await User.find({ userId });
-  const getHR = await getHeartRate(user[0].acs_token, userId);
-  res.status(200).send(getHR);
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(400).json({ success: false, message: error });
-  // }
+  try {
+    const { userId } = req.body;
+    const user = await User.find({ userId });
+    const getHR = await getHeartRate(user[0].acs_token, userId);
+    res.status(200).json(getHR.data);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ success: false, message: error });
+  }
 });
 
 router.get("/activity", async (req, res) => {
