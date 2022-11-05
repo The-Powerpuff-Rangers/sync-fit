@@ -24,23 +24,28 @@ class HomePage extends ConsumerWidget {
     final currIndex = ref.watch(currIndexProvider);
     return Scaffold(
       body: _pages[currIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currIndex,
-        onTap: (index) => ref.read(currIndexProvider.notifier).update(
-              (state) => index,
-            ),
-        enableFeedback: true,
-        type: BottomNavigationBarType.fixed,
-        iconSize: 22,
-        showSelectedLabels: false,
-        fixedColor: AppColors.syncGreen,
-        unselectedItemColor: Colors.black,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.house), label: ''),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.gear), label: ''),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.user), label: ''),
-        ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: Color.fromARGB(255, 66, 66, 66), width: 1.5)),
+        ),
+        child: BottomNavigationBar(
+          currentIndex: currIndex,
+          onTap: (index) => ref.read(currIndexProvider.notifier).update(
+                (state) => index,
+              ),
+          enableFeedback: true,
+          type: BottomNavigationBarType.fixed,
+          iconSize: 20,
+          showSelectedLabels: false,
+          fixedColor: AppColors.syncGreen,
+          unselectedItemColor: Colors.black,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.house), label: ''),
+            BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.gear), label: ''),
+            BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.user), label: ''),
+          ],
+        ),
       ),
     );
   }
