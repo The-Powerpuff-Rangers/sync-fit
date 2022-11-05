@@ -18,9 +18,9 @@ class SplashScreen extends ConsumerWidget {
         child: AutoSizeText.rich(
           TextSpan(
             text: 'Sync',
-            style: textTheme.headline1,
-            children: const [
-              TextSpan(text: ' Fit', style: TextStyle(color: AppColors.syncBlue)),
+            style: textTheme.headline4,
+            children: [
+              TextSpan(text: ' Fit', style: TextStyle(color: AppColors.syncGreen)),
             ],
           ),
         ),

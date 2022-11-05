@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sync_fit/utils/hex_color.dart';
 
 abstract class AppColors {
-  static const Color syncBlue = Color(0xFF1E88E5);
+  static final Color syncGreen = "#36D82E".toColor();
 }
