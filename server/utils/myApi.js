@@ -69,3 +69,11 @@ const getMySpo2 = async(userId,date)=>{
     }
 }
 
+const getMyTemp = async(userId,date)=>{
+    try {
+        const myTemp = await axios.get("http://localhost:8080/api/fitness/temp");
+        return myTemp;
+    } catch (error) {
+        
+    }
+}
