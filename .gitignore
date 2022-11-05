@@ -1,0 +1,11 @@
+# Jupyter files
+*.ipynb
+
+# pyc
+*.pyc
+
+# Environments
+venv/
+
+# tmp
+tmp/

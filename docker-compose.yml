@@ -1,0 +1,18 @@
+version: 'version 2'
+services:
+  flask:
+    build: ./flask
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=server.py
+      - FLASK_DEBUG=1
+      - FLASK_ENV=development
+  node:
+    build: ./node
+    ports:
+      - "8080:8080"
+    depends_on:
+      - flask
+    links:
+      - flask
