@@ -24,13 +24,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", require("./routes/User"));
-app.use("/fitness", require("./routes/Fitness"));
-
-app.get("/", (req, res) => {
-  // res.status(200).json({ Harsh: "hemlo" });
-  res.status(200).json({ ok: "hi" });
-});
+app.use("/api", require("./routes/User"));
+app.use("/api/fitness", require("./routes/Fitness"));
 
 app.listen(port, () => {
   console.log(`Server is Running on port ${port}`);
