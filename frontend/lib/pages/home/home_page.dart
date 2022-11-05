@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sync_fit/pages/account/account_page.dart';
+import 'package:sync_fit/pages/home/widgets/activity_cards.dart';
 import 'package:sync_fit/pages/home/widgets/mini_cards.dart';
 import 'package:sync_fit/pages/settings/settings_screen.dart';
 import 'package:sync_fit/utils/app_colors.dart';
@@ -61,66 +62,69 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AutoSizeText(
-              'Friday, 4 Nov',
-              style: TextStyle(
-                fontFamily: 'SF-Pro Display',
-                fontSize: 18,
-                fontWeight: FontWeight.w200,
-                color: Colors.black,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AutoSizeText(
+                'Friday, 4 Nov',
+                style: TextStyle(
+                  fontFamily: 'SF-Pro Display',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w200,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            const AutoSizeText(
-              'Summary',
-              style: TextStyle(
-                fontFamily: 'SF-Pro Display',
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+              const SizedBox(height: 8),
+              const AutoSizeText(
+                'Summary',
+                style: TextStyle(
+                  fontFamily: 'SF-Pro Display',
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            const AutoSizeText(
-              'Activity',
-              style: TextStyle(
-                fontFamily: 'SF-Pro Display',
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
+              const SizedBox(height: 16),
+              const AutoSizeText(
+                'Activity',
+                style: TextStyle(
+                  fontFamily: 'SF-Pro Display',
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            MiniCard(
-                icon: FontAwesomeIcons.bed,
-                title: 'Sleep',
-                time: '12:03 am',
-                content: '7h 57mins',
-                color: AppColors.parrotGreen,
-                secondaryColor: AppColors.paleGreen,
-                onTap: () {}),
-            MiniCard(
-                icon: FontAwesomeIcons.water,
-                title: 'SpO2',
-                time: '12:03 am',
-                content: '98%',
-                color: AppColors.oceanBlue,
-                secondaryColor: AppColors.paleBlue,
-                onTap: () {}),
-            MiniCard(
-                icon: FontAwesomeIcons.solidHeart,
-                title: 'Heart Rate',
-                time: '12:03 am',
-                content: '80 bpm',
-                color: AppColors.heartRed.withOpacity(0.4),
-                secondaryColor: Colors.red.shade900,
-                onTap: () {})
-          ],
+              const ActivityCard(),
+              MiniCard(
+                  icon: FontAwesomeIcons.bed,
+                  title: 'Sleep',
+                  time: '12:03 am',
+                  content: '7h 57mins',
+                  color: AppColors.parrotGreen,
+                  secondaryColor: AppColors.paleGreen,
+                  onTap: () {}),
+              MiniCard(
+                  icon: FontAwesomeIcons.water,
+                  title: 'SpO2',
+                  time: '12:03 am',
+                  content: '98%',
+                  color: AppColors.oceanBlue,
+                  secondaryColor: AppColors.paleBlue,
+                  onTap: () {}),
+              MiniCard(
+                  icon: FontAwesomeIcons.solidHeart,
+                  title: 'Heart Rate',
+                  time: '12:03 am',
+                  content: '80 bpm',
+                  color: AppColors.heartRed.withOpacity(0.4),
+                  secondaryColor: Colors.red.shade900,
+                  onTap: () {})
+            ],
+          ),
         ),
       ),
     );

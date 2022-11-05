@@ -26,8 +26,8 @@ final routerProvider = Provider<GoRouter>(
         GoRoute(
           name: 'HomePage',
           path: HomePage.routename,
-          builder: (context, state) =>  HomePage(),
-        )
+          builder: (context, state) => HomePage(),
+        ),
       ],
 
       /// TODO: Will beautify it More. but its rare to come across this page

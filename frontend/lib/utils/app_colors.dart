@@ -8,4 +8,5 @@ abstract class AppColors {
   static final Color oceanBlue = "#15CBEA".toColor();
   static final Color paleBlue = "#003E48".toColor();
   static final Color heartRed = "#FF001E".toColor();
+  static final Color yellow = '#F5E100'.toColor();
 }
