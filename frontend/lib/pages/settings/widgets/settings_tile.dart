@@ -28,7 +28,11 @@ class SettingsTile extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  Icon(icon),
+                  Icon(
+                    icon,
+                    size: 19,
+                    color: ,
+                  ),
                   const SizedBox(width: 10),
                   AutoSizeText(
                     title,
