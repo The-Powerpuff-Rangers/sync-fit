@@ -18,8 +18,18 @@ const getMyHeartRate = async (userId, date) => {
 const getMyBreathingRate = async (userId, date) => {
   try {
     const myBreathingRate = await axios.get(
-      "http://localhost:8080/api/fitness/activity"
+      "http://localhost:8080/api/fitness/breathrate"
     );
     return myBreathingRate;
   } catch (error) {}
 };
+
+const getMyActivity = async(userId,date)=>{
+    try {
+        const myActivity = await axios.get("http://localhost:8080/api/fitness/activity");
+        return myActivity;
+    } catch (error) {
+        
+    }
+}
+
