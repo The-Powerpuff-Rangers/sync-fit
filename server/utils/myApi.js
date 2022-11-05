@@ -59,3 +59,13 @@ const getMySleep = async(userId,date)=>{
         
     }
 }
+
+const getMySpo2 = async(userId,date)=>{
+    try {
+        const mySpo2 = await axios.get("http://localhost:8080/api/fitness/spo2");
+        return mySpo2;
+    } catch (error) {
+        
+    }
+}
+
