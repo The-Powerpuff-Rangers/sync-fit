@@ -88,18 +88,18 @@ const getVo2 = async (accessToken, userId, date) => {
 };
 
 const getHeartRate = async (accessToken, userId) => {
-  // try {
-  const baseUrl = `https://api.fitbit.com/1/user/${userId}/activities/heart/date/today/1d.json`;
-  const userHrData = await axios.get(baseUrl, {
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
-  });
-  return userHrData;
-  // } catch (error) {
-  //   console.log("Something is wrong with the fitbit request");
-  //   console.log(error);
-  // }
+  try {
+    const baseUrl = `https://api.fitbit.com/1/user/${userId}/activities/heart/date/today/1d.json`;
+    const userHrData = await axios.get(baseUrl, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return userHrData;
+  } catch (error) {
+    console.log("Something is wrong with the fitbit request");
+    console.log(error);
+  }
 };
 
 const getHeartRateVar = async (accessToken, userId, date) => {
