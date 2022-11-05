@@ -6,7 +6,8 @@
   
 
 
-  ![SyncFit-logos_transparentgh](https://user-images.githubusercontent.com/74452705/200133542-38eeb4f8-d286-4ead-84e4-541f65244ce2.png)
+![4ee01701-40ee-437a-97f9-4dba9c63e93f](https://user-images.githubusercontent.com/74452705/200137653-faf746f9-ee4c-4189-a14f-d48c68544764.jpeg)
+
 
 
 
