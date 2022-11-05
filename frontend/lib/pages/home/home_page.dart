@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sync_fit/pages/account/account_page.dart';
+import 'package:sync_fit/pages/settings/settings_screen.dart';
 import 'package:sync_fit/utils/app_colors.dart';
 
 final currIndexProvider = StateProvider<int>((ref) {
@@ -14,6 +15,7 @@ class HomePage extends ConsumerWidget {
 
   final List<Widget> _pages = [
     const HomeScreen(),
+    const SettingsScreen(),
     const AccountPage(),
   ];
 
