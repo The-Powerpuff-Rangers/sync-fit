@@ -36,7 +36,7 @@ class ActivityCard extends ConsumerWidget {
                 'hemlo': 10,
                 'to': 7,
               },
-              
+              ringStrokeWidth: 32,
               chartType: ChartType.ring,
               chartValuesOptions: const ChartValuesOptions(
                 showChartValueBackground: false,
@@ -61,17 +61,17 @@ class ActivityCard extends ConsumerWidget {
 
   Column miniTile(String firstText, String second) {
     return Column(
-      children: const [
+      children: [
         AutoSizeText(
-          'Goal (cal)',
-          style: TextStyle(
+          firstText,
+          style: const TextStyle(
               fontSize: 17,
               fontFamily: 'SF-Pro Display',
               fontWeight: FontWeight.w400,
               color: Color(0xffBD8800)),
         ),
-        AutoSizeText('161/430',
-            style: TextStyle(
+        AutoSizeText(second,
+            style: const TextStyle(
                 fontSize: 20,
                 fontFamily: 'SF-Pro Display',
                 fontWeight: FontWeight.w900,

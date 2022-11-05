@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sync_fit/pages/error_screen.dart';
 import 'package:sync_fit/pages/home/home_page.dart';
+import 'package:sync_fit/pages/login/screens/login_screen.dart';
 import 'package:sync_fit/pages/splash/splash_screen.dart';
 import 'package:sync_fit/providers/providers.dart';
 import 'package:sync_fit/utils/routes.dart';
@@ -66,9 +67,9 @@ class AuthChecker extends ConsumerWidget {
     return authChecker.when(
       data: (data) {
         if (data) {
-          return  HomePage();
+          return HomePage();
         }
-        return  HomePage();
+        return const LoginScreen();
       },
       error: (error, stackTrace) {
         return ErrorScreen(error: error, stackTrace: stackTrace);
