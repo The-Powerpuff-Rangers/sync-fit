@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
   res.status(200).json({ ok: "hi" });
 });
 
+// Creating a new User
 router.post("/newuser", async (req, res) => {
   try {
     const { authCode, email, docEmail, mobileNo } = req.body;
