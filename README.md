@@ -2,13 +2,13 @@
 
 <center>
   
- SyncFit is a health memo app with a lot more to offer...
+
   
 
 
 ![4ee01701-40ee-437a-97f9-4dba9c63e93f](https://user-images.githubusercontent.com/74452705/200137653-faf746f9-ee4c-4189-a14f-d48c68544764.jpeg)
 
-
+ SyncFit is a health memo app with a lot more to offer...
 
 
 ## Table of Contents
