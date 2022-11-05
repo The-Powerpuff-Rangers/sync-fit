@@ -6,7 +6,7 @@ const baseUrl = http://localhost:8080/api/fitness/heartratevar;
 const getMyHeartRate = async (userId, date) => {
   try {
     const myHrData = await axios.get(
-      "http://localhost:8080/api/fitness/heartratevar"
+      "http://localhost:8080/api/fitness/heartrate"
     );
     return myHrData;
   } catch (error) {
@@ -33,3 +33,20 @@ const getMyActivity = async(userId,date)=>{
     }
 }
 
+const getMyheartRateVar = async(userId,date)=>{
+    try {
+        const myHrvData = await axios.get("http://localhost:8080/api/fitness/heartratevar");
+        return myHrvData;
+    } catch (error) {
+        
+    }
+}
+
+const getMyWater = async(userId,date)=>{
+    try {
+        const myWaterLog = await axios.get("http://localhost:8080/api/fitness/water");
+        return myWaterLog;
+    } catch (error) {
+        
+    }
+}
