@@ -1,0 +1,39 @@
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "baseURL": "api/v1/",
+    "metadata": {
+        "name": "server",
+        "labels": {
+            "app": "server"
+        }
+    },
+    "spec": {
+        "ports": [
+            {
+                "port": 5000
+            }
+        ],
+        "selector": {
+            "app": "server"
+        }
+    },
+    "endpoints": [
+        {
+            "url": {
+                "endpoint": "api/v1/recipes",
+                "method": "GET",
+                "returntype": "json",
+                "parameters": "None"
+            }
+        },
+        {
+            "url": {
+                "endpoint": "api/v1/articles",
+                "method": "GET",
+                "returntype": "json",
+                "parameters": "None"
+            }
+        }
+    ]
+}

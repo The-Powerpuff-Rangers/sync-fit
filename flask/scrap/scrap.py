@@ -1,11 +1,13 @@
 import bs4
 import requests
 import re
+import json
 
 
 class scrap:
     def overview(self) -> dict:
-        return {"id": 'overview'}
+        overview = json.loads(open('json/api.json').read())
+        return overview
 
     def recipes(self) -> dict:
         headers = {
