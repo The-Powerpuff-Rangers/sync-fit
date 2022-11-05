@@ -44,6 +44,8 @@ dependencies:
   auto_size_text: ^3.0.0
   pretty_dio_logger: ^1.2.0-beta-1
   lottie: ^1.4.3
+  intl: ^0.17.0
+  font_awesome_flutter: ^10.2.1
 
 dev_dependencies:
   flutter_test:
