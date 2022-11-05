@@ -2,8 +2,9 @@ import bs4
 import requests
 
 class scrap:
-    def __init__(self) -> None:
-        pass
+    def overview(self) -> dict:
+        return {"id":'overview'}
+
     def recipes(self) -> dict:
         return {"id":'recipes'}
     
@@ -11,4 +12,4 @@ class scrap:
         return {"id":'articles'}
 
 if __name__ == "__main__":
-    scrap()
+    print(scrap().articles())

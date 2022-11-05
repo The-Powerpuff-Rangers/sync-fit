@@ -1,7 +1,15 @@
 from flask import Flask
-from scrap import scrap
+from scrap.scrap import scrap
 app = Flask(__name__)
 
-@app.route('/api/v1')
+@app.route('/api/v1/')
 def overview():
-    return 
+    return scrap().overview()
+
+@app.route('/api/v1/receipes/')
+def recipes():
+    return scrap().recipes()
+
+@app.route('/api/v1/articles/')
+def articles():
+    return scrap().articles()
