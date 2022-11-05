@@ -22,6 +22,7 @@
  ![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
  ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
  ![](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+ ![](https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white)
   
 ## Table of Contents
 
@@ -37,6 +38,7 @@
 - [Contributing](#contributing)
 - [License](#license)
 - [About Us](#about-us)
+- [Revenue Point](#revenue-point)
 
 ## Inspiration
   
@@ -63,6 +65,20 @@ When consumers are feeling uneasy or when their smartwatch detects a worrying ch
   - Dart
   - Python  
   
+## Revenue Point
+  
+  We will offer a subscribtion based service to our extra features that can be added in the future.
+  
+  - Complete nutrition profile analysis and prediction of the effect of foods on different health parameters like blood cholestrol level, blood sugar for diabetics, etc from the <b>NHANES</b> OpenSource Dataset
+  
+ <img src="https://user-images.githubusercontent.com/74452705/200141412-6cf8aa32-0714-4777-aaac-bb82ca57fac2.png" height=250px > <img src="https://user-images.githubusercontent.com/74452705/200141615-5bf5d1e9-9f3b-4ed7-968d-416f1bd51c46.png" height=250px >
+   
+ 
+  
+  - Support of full yoga guided routines like surya namaskar instead of just some asanas. 
+  
+  - Recipe recommendation based on food intake.
+
   
 ## Challenges we ran into?
 
@@ -113,8 +129,12 @@ Although this project is ready, there is always scope for more improvement
 
 - We will add nutrition profile of our recipies and add more features like calorie tracking.
 
-## 📸 Screenshots Time
+- Nutrition profile analysis using custom neural network trained on NHANES OpenSource Dataset.
 
+## 📸 Screenshots Time
+  <img src="https://user-images.githubusercontent.com/74452705/200141919-bd37a505-ff21-4675-9ace-0bdfc52fb67b.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200141933-80888da6-0461-44f1-9c40-2597efd4a6df.png" height=500px >
+  <img src="https://user-images.githubusercontent.com/74452705/200141967-f0ad10e3-961a-49b6-84dc-4b6b494814f2.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200141977-52439775-0fc1-43fb-8a23-58814406aa40.png" height=500px >
+  <img src="https://user-images.githubusercontent.com/74452705/200141993-825dca0d-d98e-43cc-aa01-0d39f1952aa3.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200142006-cf6f14e5-bb90-4a50-8cd1-4d54feef7c4b.png" height=500px > 
 
 ## Contributing
 
@@ -122,7 +142,7 @@ Since this project was built during HackCBS 5.0, we would be seldomly improving 
 
 ## License
 
-This project is MIT [Licensed](./LICENSE)
+This project is GNU [Licensed](./LICENSE)
 
 ## About Us
 
