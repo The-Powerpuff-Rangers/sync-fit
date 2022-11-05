@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sync_fit/main.dart';
+import 'package:sync_fit/pages/home/home_page.dart';
 
 import '../pages/splash/splash_screen.dart';
 
@@ -22,6 +23,11 @@ final routerProvider = Provider<GoRouter>(
           path: SplashScreen.routename,
           builder: (context, state) => const SplashScreen(),
         ),
+        GoRoute(
+          name: 'HomePage',
+          path: HomePage.routename,
+          builder: (context, state) => const HomePage(),
+        )
       ],
 
       /// TODO: Will beautify it More. but its rare to come across this page

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends ConsumerWidget {
-  static const routename = '/home';
-  const HomePage({super.key});
+class ActivityCards extends ConsumerWidget {
+  const ActivityCards({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold();
+    return Container();
   }
 }

@@ -1,7 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sync_fit/pages/home/home_page.dart';
+import 'package:sync_fit/providers/providers.dart';
+import 'package:sync_fit/utils/syncfit_exception.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
@@ -9,6 +13,7 @@ class LoginScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
+    final auth = ref.watch(authApiProvider);
     return Scaffold(
       body: SafeArea(child: LayoutBuilder(builder: (context, size) {
         return Stack(
@@ -46,7 +51,19 @@ class LoginScreen extends ConsumerWidget {
                 const Spacer(),
                 Center(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      final route = GoRouter.of(context);
+                      try {
+                        final result = await auth.login();
+                        if (result) {
+                          ref.refresh(futureTokensProvider);
+                          route.go(HomePage.routename);
+                        }
+                      } on SyncFitException catch (e) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text('Error registering: $e')));
+                      }
+                    },
                     child: Container(
                       width: size.maxWidth * 0.6,
                       height: size.maxHeight / 11,
@@ -73,9 +90,7 @@ class LoginScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const Spacer(
-                  flex: 2,
-                ),
+                const Spacer(flex: 2),
               ],
             ),
             Positioned(
@@ -87,7 +102,6 @@ class LoginScreen extends ConsumerWidget {
                   child: Lottie.asset(
                     'assets/lottie/fitness.json',
                     repeat: true,
-                    // addRepaintBoundary: true,
                     fit: BoxFit.cover,
                   ),
                 )),
