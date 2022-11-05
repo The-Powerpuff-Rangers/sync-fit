@@ -76,3 +76,15 @@ const getMyVo2 = async (userId, date) => {
     return myVo2;
   } catch (error) {}
 };
+
+module.exports = {
+  getMyActivity,
+  getMyBreathingRate,
+  getMyHeartRate,
+  getMySleep,
+  getMySpo2,
+  getMyTemp,
+  getMyVo2,
+  getMyWater,
+  getMyheartRateVar,
+};
