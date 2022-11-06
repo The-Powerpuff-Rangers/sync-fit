@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:sync_fit/pages/account/account_page.dart';
 import 'package:sync_fit/pages/home/widgets/activity_cards.dart';
 import 'package:sync_fit/pages/home/widgets/mini_cards.dart';
+import 'package:sync_fit/pages/home/widgets/web_cards.dart';
 import 'package:sync_fit/pages/settings/settings_screen.dart';
 import 'package:sync_fit/utils/app_colors.dart';
 
@@ -135,6 +136,7 @@ class HomeScreen extends ConsumerWidget {
                     color: Colors.black,
                   ),
                 ),
+                const WebCards(),
                 const SizedBox(height: 30),
                 const AutoSizeText(
                   'Recipe of the day',
