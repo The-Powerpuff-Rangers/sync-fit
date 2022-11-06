@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sync_fit/main.dart';
 import 'package:sync_fit/pages/home/home_page.dart';
+import 'package:sync_fit/pages/registration_form/form_screen.dart';
 
 import '../pages/splash/splash_screen.dart';
 
@@ -22,6 +23,13 @@ final routerProvider = Provider<GoRouter>(
           name: 'SplashScreen',
           path: SplashScreen.routename,
           builder: (context, state) => const SplashScreen(),
+        ),
+        GoRoute(
+          name: 'FormPage',
+          path: FormScreen.routename,
+          builder: (context, state) => FormScreen(
+            authCode: state.extra as String,
+          ),
         ),
         GoRoute(
           name: 'HomePage',
