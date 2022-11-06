@@ -29,7 +29,7 @@ router.post("/newuser", async (req, res) => {
     });
     await newUser.save();
     res.status(200).send({
-      status: "failure",
+      status: "success",
       message: "FuckOff",
       token: tokenData.access_token,
     });
