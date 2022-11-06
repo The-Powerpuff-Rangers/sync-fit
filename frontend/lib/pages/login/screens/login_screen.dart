@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sync_fit/pages/home/home_page.dart';
+import 'package:sync_fit/pages/registration_form/form_screen.dart';
 import 'package:sync_fit/providers/providers.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
 
@@ -55,9 +55,9 @@ class LoginScreen extends ConsumerWidget {
                       final route = GoRouter.of(context);
                       try {
                         final result = await auth.login();
-                        if (result) {
+                        if (result != null) {
                           ref.refresh(futureTokensProvider);
-                          route.go(HomePage.routename);
+                          route.go(FormScreen.routename, extra: result);
                         }
                       } on SyncFitException catch (e) {
                         ScaffoldMessenger.of(context)

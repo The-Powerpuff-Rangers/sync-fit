@@ -27,7 +27,9 @@ final routerProvider = Provider<GoRouter>(
         GoRoute(
           name: 'FormPage',
           path: FormScreen.routename,
-          builder: (context, state) => const FormScreen(),
+          builder: (context, state) => FormScreen(
+            authCode: state.extra as String,
+          ),
         ),
         GoRoute(
           name: 'HomePage',

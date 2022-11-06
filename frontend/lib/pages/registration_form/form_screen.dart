@@ -22,7 +22,8 @@ final doctorNameControllerProvider = Provider.autoDispose<TextEditingController>
 
 class FormScreen extends ConsumerWidget {
   static const routename = '/form-screen';
-  const FormScreen({super.key});
+  final String authCode;
+  const FormScreen({super.key, required this.authCode});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
