@@ -41,8 +41,6 @@ class Authentication {
       if (modelResponse.status == 'success') {
         await _flutterSecureStorage.write(key: 'token', value: modelResponse.token);
         return true;
-      } else {
-        return false;
       }
     } on SyncFitException catch (e) {
       log(e.toString());
