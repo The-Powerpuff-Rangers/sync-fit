@@ -20,7 +20,6 @@ class Authentication {
 
       final token = Uri.parse(result).queryParameters['code'];
       if (token != null) {
-        // await _flutterSecureStorage.write(key: 'token', value: token);
         return token;
       }
     } on SyncFitException catch (e) {
@@ -32,14 +31,16 @@ class Authentication {
 
   Future<void> logout() async {
     await _flutterSecureStorage.delete(key: 'token');
+    await _flutterSecureStorage.delete(key: 'userId');
   }
 
   Future<bool> completeRegistration(FormModel data) async {
     try {
-      final response = await dio.post('$endpoint/newuser', data: data.toMap());
+      final response = await dio.post('/newuser', data: data.toMap());
       final modelResponse = RegistrationResponse.fromMap(response.data);
       if (modelResponse.status == 'success') {
         await _flutterSecureStorage.write(key: 'token', value: modelResponse.token);
+        await _flutterSecureStorage.write(key: 'userId', value: modelResponse.userId);
         return true;
       }
     } on SyncFitException catch (e) {

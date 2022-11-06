@@ -4,21 +4,25 @@ class RegistrationResponse {
   final String status;
   final String message;
   final String token;
+  final String userId;
   RegistrationResponse({
     required this.status,
     required this.message,
     required this.token,
+    required this.userId,
   });
 
   RegistrationResponse copyWith({
     String? status,
     String? message,
     String? token,
+    String? userId,
   }) {
     return RegistrationResponse(
       status: status ?? this.status,
       message: message ?? this.message,
       token: token ?? this.token,
+      userId: userId ?? this.userId,
     );
   }
 
@@ -27,6 +31,7 @@ class RegistrationResponse {
       'status': status,
       'message': message,
       'token': token,
+      'userId': userId,
     };
   }
 
@@ -35,6 +40,7 @@ class RegistrationResponse {
       status: map['status'] ?? '',
       message: map['message'] ?? '',
       token: map['token'] ?? '',
+      userId: map['user_id'] ?? '',
     );
   }
 

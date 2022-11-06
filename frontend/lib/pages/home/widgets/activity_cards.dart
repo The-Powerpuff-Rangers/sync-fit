@@ -21,37 +21,41 @@ class ActivityCard extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               miniTile('Goal (cal)', '2000'),
               miniTile('Steps', '4,739'),
               miniTile('Distance (km)', '3.42'),
             ],
           ),
-          Container(
-            width: 200,
-            height: 140,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: PieChart(
-              dataMap: const {
-                'hemlo': 10,
-                'to': 7,
-              },
-              ringStrokeWidth: 32,
-              chartType: ChartType.ring,
-              chartValuesOptions: const ChartValuesOptions(
-                showChartValueBackground: false,
-                showChartValues: false,
-                showChartValuesInPercentage: false,
-                showChartValuesOutside: false,
+          Flexible(
+            child: Container(
+              width: 200,
+              height: 140,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: PieChart(
+                dataMap: const {
+                  'hemlo': 10,
+                  'to': 7,
+                },
+                ringStrokeWidth: 32,
+                chartType: ChartType.ring,
+                chartValuesOptions: const ChartValuesOptions(
+                  showChartValueBackground: false,
+                  showChartValues: false,
+                  showChartValuesInPercentage: false,
+                  showChartValuesOutside: false,
+                ),
+                legendOptions: const LegendOptions(
+                  showLegends: false,
+                  showLegendsInRow: false,
+                ),
+                colorList: [
+                  const Color(0xff3F1B25),
+                  AppColors.parrotGreen,
+                ],
               ),
-              legendOptions: const LegendOptions(
-                showLegends: false,
-                showLegendsInRow: false,
-              ),
-              colorList: [
-                const Color(0xff3F1B25),
-                AppColors.parrotGreen,
-              ],
             ),
           )
         ],
@@ -61,6 +65,7 @@ class ActivityCard extends ConsumerWidget {
 
   Column miniTile(String firstText, String second) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AutoSizeText(
           firstText,
