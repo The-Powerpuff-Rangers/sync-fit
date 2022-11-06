@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:sync_fit/models/activity.dart';
+import 'package:sync_fit/models/heartbeat.dart';
 import 'package:sync_fit/models/sleep.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
 
@@ -57,12 +58,14 @@ class Database {
     }
   }
 
-  Future<void> getHeartRateCardData() async {
+  Future<HeartBeat> getHeartRateCardData() async {
     try {
       final endpoint = '/fitness/heartrate/$userId';
       final response = await dio.get(endpoint);
+      return HeartBeat.fromMap(response.data);
     } on SyncFitException catch (e) {
       log(e.toString());
+      rethrow;
     }
   }
 }

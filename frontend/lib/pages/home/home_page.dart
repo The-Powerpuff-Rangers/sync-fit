@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sync_fit/api/database.dart';
 import 'package:sync_fit/models/activity.dart';
+import 'package:sync_fit/models/heartbeat.dart';
 import 'package:sync_fit/pages/account/account_page.dart';
 import 'package:sync_fit/pages/home/widgets/activity_cards.dart';
 import 'package:sync_fit/pages/home/widgets/mini_cards.dart';
@@ -29,7 +30,7 @@ final activityProvider = FutureProvider<Activity>((ref) async {
 //   return database.getSleepCardData();
 // });
 
-final heartrateProvider = FutureProvider((ref) async {
+final heartrateProvider = FutureProvider<HeartBeat>((ref) async {
   final database = ref.watch(databaseApiProvider);
   return database.getHeartRateCardData();
 });
@@ -90,7 +91,6 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activityData = ref.watch(activityProvider);
     final heartrateData = ref.watch(heartrateProvider);
-    final spo2Data = ref.watch(spo2Provider);
     return SafeArea(
       child: ListView(
         children: [
@@ -168,14 +168,19 @@ class HomeScreen extends ConsumerWidget {
                     color: AppColors.oceanBlue,
                     secondaryColor: AppColors.paleBlue,
                     onTap: () {}),
-                MiniCard(
-                    icon: FontAwesomeIcons.solidHeart,
-                    title: 'Heart Rate',
-                    time: DateFormat.jm().format(DateTime.now()),
-                    content: '80 bpm',
-                    color: AppColors.heartRed.withOpacity(0.4),
-                    secondaryColor: Colors.red.shade900,
-                    onTap: () {}),
+                heartrateData.when(
+                  data: (data) => MiniCard(
+                      icon: FontAwesomeIcons.solidHeart,
+                      title: 'Heart Rate',
+                      time: DateFormat.jm().format(DateTime.now()),
+                      content: '${(data.max + data.min) ~/ 2} bpm',
+                      color: AppColors.heartRed.withOpacity(0.4),
+                      secondaryColor: Colors.red.shade900,
+                      onTap: () {}),
+                  loading: () => const SizedBox(),
+                  error: (error, stack) => const SizedBox(),
+                ),
+
                 const SizedBox(height: 30),
                 const AutoSizeText(
                   'Articles',
