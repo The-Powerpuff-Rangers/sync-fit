@@ -39,15 +39,13 @@ router.get("/activity/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.find({ userId });
     const getAc = await getActivity(userId, user[0].acs_token, date);
-    // const newJson = new json();
-    // newJson.goals = getAc.data.goals;
-    // newJson.mainValues = {};
-    // newJson.mainValues.activityCalories = getAc.data.summary.activityCalories;
-    // newJson.mainValues.caloriesBMR = getAc.data.summary.caloriesBMR;
-    // newJson.mainValues.caloriesOut = getAc.data.summary.caloriesOut;
-    // newJson.steps = getAc.data.summary.steps;
-    // await User.updateOne({ userId }, { $push: { activity: newJson } });
-    res.status(200).json(getAc.data.goals);
+    const myActivity = {
+      activityCalories: getAc.data.summary.activityCalories,
+      caloriesBMR: getAc.data.summary.caloriesBMR,
+      caloriesOut: getAc.data.summary.caloriesOut,
+    };
+    await User.updateOne({ userId }, { $push: { activity: myActivity } });
+    res.status(200).json(myActivity);
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
