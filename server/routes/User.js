@@ -28,11 +28,15 @@ router.post("/newuser", async (req, res) => {
       weight,
     });
     await newUser.save();
-    res.status(200).send({ success: true });
+    res.status(200).send({
+      status: "failure",
+      message: "FuckOff",
+      token: tokenData.access_token,
+    });
   } catch (err) {
     console.log("Something went wrong during creating a new user");
     console.log(err);
-    res.status(200).send({ success: false });
+    res.status(200).send({ status: "failure", message: "FuckOff" });
   }
 });
 
