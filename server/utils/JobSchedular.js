@@ -45,7 +45,7 @@ const every24Hrs = () => {
       const options = {
         from: "healthMemoApp32434@outlook.com",
         to: "harshsharma6419@gmail.com",
-        subject: "Sending you a test email",
+        subject: `Health Report(${user.name}), Date: ${myDate} ${date.getMonth}`,
         text: "Welcome to Msit",
       };
 

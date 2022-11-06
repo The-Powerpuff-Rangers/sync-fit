@@ -1,3 +1,4 @@
+const { json } = require("express");
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
@@ -18,7 +19,14 @@ router.get("/heartrate", async (req, res) => {
     const { userId } = req.body;
     const user = await User.find({ userId });
     const getHR = await getHeartRate(user[0].acs_token, userId);
-    res.status(200).json(getHR.data);
+    const resultJson = getHR.data["activities-heart"][0].value.heartRateZones;
+    const resultData = {};
+    for (let i = 0; i < 4; i++) {
+      const data = resultJson[i].name;
+      resultData[data] = resultJson[i];
+    }
+    await User.updateOne({ userId }, { $push: { heartRate: resultData } });
+    res.status(200).json(resultData);
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -30,7 +38,10 @@ router.get("/activity", async (req, res) => {
     const { userId, date } = req.body;
     const user = await User.find({ userId });
     const getAc = await getActivity(userId, user[0].acs_token, date);
-    res.status(200).json(getAc.data);
+    var newJson = new json();
+    const resultGoals = getAc.data.goals;
+    // newJson.goals = resultGoals;
+    res.status(200).json(resultGoals);
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
