@@ -46,6 +46,7 @@ router.get("/activity/:id/:date", async (req, res) => {
     newJson.mainValues.caloriesBMR = getAc.data.summary.caloriesBMR;
     newJson.mainValues.caloriesOut = getAc.data.summary.caloriesOut;
     newJson.steps = getAc.data.summary.steps;
+    await User.updateOne({ userId }, { $push: { activity: newJson } });
     res.status(200).json(newJson);
   } catch (error) {
     console.log(error);
