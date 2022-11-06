@@ -136,7 +136,10 @@ class HomeScreen extends ConsumerWidget {
                     color: Colors.black,
                   ),
                 ),
-                const WebCards(),
+                WebCards(
+                  onTap: () {},
+                  title: 'How to get a good night\'s sleep',
+                ),
                 const SizedBox(height: 30),
                 const AutoSizeText(
                   'Recipe of the day',
