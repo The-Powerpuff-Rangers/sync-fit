@@ -46,7 +46,8 @@ const every24Hrs = () => {
         from: "healthMemoApp32434@outlook.com",
         to: "harshsharma6419@gmail.com",
         subject: `Health Report(${user.name}), Date: ${myDate} ${date.getMonth}`,
-        text: `Heart Rate  -----  ${HrData["Out of Range"]}`,
+        text: `Heart Rate  -----  
+        Out of Range`,
       };
 
       transporter.sendMail(options, (err, res) => {
