@@ -30,7 +30,7 @@ class Database {
 
   Future<Sleep> getSleepCardData() async {
     try {
-      final endpoint = '/fitness/sleep/$userId/${DateFormat("yyyymmdd").format(DateTime.now())}';
+      final endpoint = '/fitness/sleep/$userId/${DateFormat("yyyy-MM-dd").format(DateTime.now())}';
       final response = await dio.get(
         endpoint,
       );
@@ -43,7 +43,7 @@ class Database {
 
   Future<void> getSpo2CardData() async {
     try {
-      final endpoint = '/fitness/spo2/$userId/${DateFormat("yyyymmdd").format(DateTime.now())}';
+      final endpoint = '/fitness/spo2/$userId/${DateFormat("yyyy-MM-dd").format(DateTime.now())}';
       final response = await dio.get(
         endpoint,
       );
@@ -56,7 +56,6 @@ class Database {
     try {
       final endpoint = '/fitness/heartrate/$userId';
       final response = await dio.get(endpoint);
-      log(response.data);
     } on SyncFitException catch (e) {
       log(e.toString());
     }

@@ -20,7 +20,7 @@ final currIndexProvider = StateProvider<int>((ref) {
 
 final sleepDataProvider = FutureProvider((ref) async {
   final database = ref.watch(databaseApiProvider);
-  return database.getSpo2CardData();
+  return database.getHeartRateCardData();
 });
 
 class HomePage extends ConsumerWidget {

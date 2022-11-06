@@ -100,8 +100,10 @@ class FormScreen extends ConsumerWidget {
                                 doctorName: doctorNameController.text,
                                 authCode: authCode);
                             final router = GoRouter.of(context);
-                            final result = await ref.read(authApiProvider).completeRegistration(data);
+                            final result =
+                                await ref.read(authApiProvider).completeRegistration(data);
                             if (result) {
+                              ref.refresh(futureTokensProvider);
                               router.go(HomePage.routename);
                             }
                           },
