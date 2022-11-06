@@ -2,16 +2,25 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:sync_fit/api/database.dart';
 import 'package:sync_fit/pages/account/account_page.dart';
 import 'package:sync_fit/pages/home/widgets/activity_cards.dart';
 import 'package:sync_fit/pages/home/widgets/mini_cards.dart';
 import 'package:sync_fit/pages/home/widgets/web_cards.dart';
 import 'package:sync_fit/pages/settings/settings_screen.dart';
+import 'package:sync_fit/pages/webview/webview.dart';
 import 'package:sync_fit/utils/app_colors.dart';
 
 final currIndexProvider = StateProvider<int>((ref) {
   return 0;
+});
+
+final sleepDataProvider = FutureProvider((ref) async {
+  final database = ref.watch(databaseApiProvider);
+  return database.getHeartRateCardData();
 });
 
 class HomePage extends ConsumerWidget {
@@ -63,6 +72,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final sleepData = ref.watch(sleepDataProvider);
+    sleepData.whenData((data) {});
     return SafeArea(
       child: ListView(
         children: [
@@ -72,14 +83,28 @@ class HomeScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AutoSizeText(
-                  DateFormat("EEEE, d MMM").format(DateTime.now()),
-                  style: const TextStyle(
-                    fontFamily: 'SF-Pro Display',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                    color: Colors.black,
-                  ),
+                Row(
+                  children: [
+                    AutoSizeText(
+                      DateFormat("EEEE, d MMM").format(DateTime.now()),
+                      style: const TextStyle(
+                        fontFamily: 'SF-Pro Display',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w200,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                        onPressed: () async {
+                          final router = GoRouter.of(context);
+                          if (await Permission.camera.isDenied) {
+                            await Permission.camera.request();
+                          }
+                          router.push(WebView.routename);
+                        },
+                        icon: const FaIcon(FontAwesomeIcons.om))
+                  ],
                 ),
                 const SizedBox(height: 8),
                 const AutoSizeText(

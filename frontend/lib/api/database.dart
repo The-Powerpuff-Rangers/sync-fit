@@ -1,7 +1,17 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
+
+import '../pages/login/providers/auth_provider.dart';
+import '../providers/providers.dart';
+
+final databaseApiProvider = Provider<Database>((ref) {
+  final dio = ref.watch(dioProvider);
+  final userId = ref.watch(futureTokensProvider).asData!.value!.userId;
+  return Database(dio, userId);
+});
 
 class Database {
   final Dio dio;
@@ -21,7 +31,14 @@ class Database {
       const endpoint = '/fitness/sleep';
       final response = await dio.get(
         endpoint,
-        options: Options(headers: {'userId': userId}),
+        queryParameters: {
+          'userId': userId,
+        },
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
       );
       log(response.data);
     } on SyncFitException catch (e) {
@@ -39,7 +56,9 @@ class Database {
 
   Future<void> getHeartRateCardData() async {
     try {
-      const endpoint = '/fitness/heartrate';
+      final endpoint = '/fitness/heartrate/$userId';
+      final response = await dio.get(endpoint);
+      log(response.data);
     } on SyncFitException catch (e) {
       log(e.toString());
     }

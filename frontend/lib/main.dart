@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,6 +18,10 @@ void main() async {
 
   // Get the secure shared preferences instance before launching the app
   const FlutterSecureStorage instance = FlutterSecureStorage();
+
+  if (Platform.isAndroid) {
+    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+  }
 
   // Get the shared preferences instance before launching the app
   final SharedPreferences prefs = await SharedPreferences.getInstance();

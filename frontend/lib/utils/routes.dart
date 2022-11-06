@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sync_fit/main.dart';
 import 'package:sync_fit/pages/home/home_page.dart';
 import 'package:sync_fit/pages/registration_form/form_screen.dart';
+import 'package:sync_fit/pages/webview/webview.dart';
 
 import '../pages/splash/splash_screen.dart';
 
@@ -36,6 +37,12 @@ final routerProvider = Provider<GoRouter>(
           path: HomePage.routename,
           builder: (context, state) => HomePage(),
         ),
+         GoRoute(
+          name: 'WebView',
+          path: WebView.routename,
+          builder: (context, state) => WebView(),
+        ),
+
       ],
 
       /// TODO: Will beautify it More. but its rare to come across this page

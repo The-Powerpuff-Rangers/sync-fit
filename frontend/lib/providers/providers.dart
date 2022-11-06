@@ -17,8 +17,9 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
 final futureTokensProvider = FutureProvider<Token?>((ref) async {
   final instance = ref.watch(secureStorageProvider);
   final token = await instance.read(key: 'token');
-  if (token != null) {
-    return Token(token: token);
+  final userId = await instance.read(key: 'userId');
+  if (token != null && userId != null) {
+    return Token(token: token, userId: userId);
   }
   return null;
 });
