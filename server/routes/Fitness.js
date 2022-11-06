@@ -105,7 +105,7 @@ router.get("/sleep/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.find({ userId });
     const getsleep = await getSleep(user[0].acs_token, userId, date);
-    res.status(200).json(getsleep.data);
+    res.status(200).json(getsleep.data.sleep);
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -152,16 +152,26 @@ router.get("/vo2/:id/:date", async (req, res) => {
 });
 
 router.get("/yellowbar/:id/:date", async (req, res) => {
-  // try {
-  const userId = req.params.id;
-  const date = req.params.data;
-  const user = await User.find({ userId });
-  const getYellowCardData = await getActivity(userId, user[0].acs_token, date);
-  res.status(200).json(getYellowCardData);
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(400).json({ success: false, message: error });
-  // }
+  try {
+    const userId = req.params.id;
+    const date = req.params.date;
+    const user = await User.find({ userId });
+    const getYellowCardData = await getActivity(
+      userId,
+      user[0].acs_token,
+      date
+    );
+    res.status(200).json({
+      message: "success",
+      stepGoal: getYellowCardData.data.goals.steps,
+      step: getYellowCardData.data.summary.steps,
+      distance: getYellowCardData.data.summary.distances[0].distance,
+      calories: getYellowCardData.data.summary.caloriesOut,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ success: false, message: error });
+  }
 });
 
 module.exports = router;
