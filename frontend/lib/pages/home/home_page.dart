@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sync_fit/api/database.dart';
+import 'package:sync_fit/models/activity.dart';
 import 'package:sync_fit/pages/account/account_page.dart';
 import 'package:sync_fit/pages/home/widgets/activity_cards.dart';
 import 'package:sync_fit/pages/home/widgets/mini_cards.dart';
@@ -18,9 +19,24 @@ final currIndexProvider = StateProvider<int>((ref) {
   return 0;
 });
 
-final sleepDataProvider = FutureProvider((ref) async {
+final activityProvider = FutureProvider<Activity>((ref) async {
+  final database = ref.watch(databaseApiProvider);
+  return database.getYellowCardData();
+});
+
+// final sleepDataProvider = FutureProvider<Sleep>((ref) async {
+//   final database = ref.watch(databaseApiProvider);
+//   return database.getSleepCardData();
+// });
+
+final heartrateProvider = FutureProvider((ref) async {
   final database = ref.watch(databaseApiProvider);
   return database.getHeartRateCardData();
+});
+
+final spo2Provider = FutureProvider((ref) async {
+  final database = ref.watch(databaseApiProvider);
+  return database.getSpo2CardData();
 });
 
 class HomePage extends ConsumerWidget {
@@ -72,8 +88,9 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sleepData = ref.watch(sleepDataProvider);
-    sleepData.whenData((data) {});
+    final activityData = ref.watch(activityProvider);
+    final heartrateData = ref.watch(heartrateProvider);
+    final spo2Data = ref.watch(spo2Provider);
     return SafeArea(
       child: ListView(
         children: [
@@ -126,15 +143,23 @@ class HomeScreen extends ConsumerWidget {
                     color: Colors.black,
                   ),
                 ),
-                const ActivityCard(),
+                activityData.when(
+                  data: (data) => ActivityCard(
+                    activity: data,
+                  ),
+                  loading: () => const SizedBox(),
+                  error: (error, stack) => const SizedBox(),
+                ),
+                // const ActivityCard(),
                 MiniCard(
-                    icon: FontAwesomeIcons.bed,
-                    title: 'Sleep',
-                    time: DateFormat.jm().format(DateTime.now()),
-                    content: '7h 57mins',
-                    color: AppColors.parrotGreen,
-                    secondaryColor: AppColors.paleGreen,
-                    onTap: () {}),
+                  icon: FontAwesomeIcons.bed,
+                  title: 'Sleep',
+                  time: DateFormat.jm().format(DateTime.now()),
+                  content: '7h 30m',
+                  color: AppColors.parrotGreen,
+                  secondaryColor: AppColors.paleGreen,
+                  onTap: () {},
+                ),
                 MiniCard(
                     icon: FontAwesomeIcons.water,
                     title: 'SpO2',

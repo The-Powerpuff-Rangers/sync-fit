@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:sync_fit/models/activity.dart';
 import 'package:sync_fit/models/sleep.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
 
@@ -20,26 +21,30 @@ class Database {
   final String userId;
   Database(this.dio, this.userId);
 
-  Future<void> getYellowCardData() async {
+  Future<Activity> getYellowCardData() async {
     try {
-      const endpoint = '';
-    } on SyncFitException catch (e) {
-      log(e.toString());
-    }
-  }
-
-  Future<Sleep> getSleepCardData() async {
-    try {
-      final endpoint = '/fitness/sleep/$userId/${DateFormat("yyyy-MM-dd").format(DateTime.now())}';
-      final response = await dio.get(
-        endpoint,
-      );
-      return Sleep.fromMap(response.data);
+      final endpoint =
+          '/fitness/yellowbar/$userId/${DateFormat("yyyy-MM-dd").format(DateTime.now())}';
+      final response = await dio.get(endpoint);
+      return Activity.fromMap(response.data);
     } on SyncFitException catch (e) {
       log(e.toString());
       rethrow;
     }
   }
+
+  // Future<Sleep> getSleepCardData() async {
+  //   try {
+  //     final endpoint = '/fitness/sleep/$userId/${DateFormat("yyyy-MM-dd").format(DateTime.now())}';
+  //     final response = await dio.get(
+  //       endpoint,
+  //     );
+  //     return Sleep.fromMap(response.data);
+  //   } on SyncFitException catch (e) {
+  //     log(e.toString());
+  //     rethrow;
+  //   }
+  // }
 
   Future<void> getSpo2CardData() async {
     try {

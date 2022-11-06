@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:sync_fit/models/activity.dart';
 import 'package:sync_fit/utils/app_colors.dart';
 
 class ActivityCard extends ConsumerWidget {
-  const ActivityCard({super.key});
+  final Activity activity;
+  const ActivityCard({super.key, required this.activity});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,9 +28,9 @@ class ActivityCard extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              miniTile('Goal (cal)', '2000'),
-              miniTile('Steps', '4,739'),
-              miniTile('Distance (km)', '3.42'),
+              miniTile('Goal (cal)', '${activity.calories}'),
+              miniTile('Steps', '${activity.step}'),
+              miniTile('Distance (miles)', '${activity.distance}'),
             ],
           ),
           Flexible(
@@ -35,10 +39,11 @@ class ActivityCard extends ConsumerWidget {
               height: 140,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: PieChart(
-                dataMap: const {
-                  'hemlo': 10,
-                  'to': 7,
+                dataMap: {
+                  'StepGoal': activity.stepGoal.toDouble(),
+                  'step': activity.step.toDouble(),
                 },
+                initialAngleInDegree: 10 * pi,
                 ringStrokeWidth: 32,
                 chartType: ChartType.ring,
                 chartValuesOptions: const ChartValuesOptions(
