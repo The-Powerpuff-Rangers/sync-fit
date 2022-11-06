@@ -6,12 +6,12 @@ class Sleep {
   final List sleep;
   final int totalMinutesAsleep;
   final int totalSleepRecords;
-  final int totalMinutesAwake;
+  final int totalTimeInBed;
   Sleep({
     required this.sleep,
     required this.totalMinutesAsleep,
     required this.totalSleepRecords,
-    required this.totalMinutesAwake,
+    required this.totalTimeInBed,
   });
 
   Sleep copyWith({
@@ -24,7 +24,7 @@ class Sleep {
       sleep: sleep ?? this.sleep,
       totalMinutesAsleep: totalMinutesAsleep ?? this.totalMinutesAsleep,
       totalSleepRecords: totalSleepRecords ?? this.totalSleepRecords,
-      totalMinutesAwake: totalMinutesAwake ?? this.totalMinutesAwake,
+      totalTimeInBed: totalMinutesAwake ?? totalTimeInBed,
     );
   }
 
@@ -33,7 +33,7 @@ class Sleep {
       'sleep': sleep,
       'totalMinutesAsleep': totalMinutesAsleep,
       'totalSleepRecords': totalSleepRecords,
-      'totalMinutesAwake': totalMinutesAwake,
+      'totalMinutesAwake': totalTimeInBed,
     };
   }
 
@@ -42,7 +42,7 @@ class Sleep {
       sleep: List.from(map['sleep']),
       totalMinutesAsleep: map['summary']['totalMinutesAsleep']?.toInt() ?? 0,
       totalSleepRecords: map['summary']['totalSleepRecords']?.toInt() ?? 0,
-      totalMinutesAwake: map['summary']['totalMinutesAwake']?.toInt() ?? 0,
+      totalTimeInBed: map['summary']['totalTimeInBed']?.toInt() ?? 0,
     );
   }
 
@@ -52,7 +52,7 @@ class Sleep {
 
   @override
   String toString() {
-    return 'Sleep(sleep: $sleep, totalMinutesAsleep: $totalMinutesAsleep, totalSleepRecords: $totalSleepRecords, totalMinutesAwake: $totalMinutesAwake)';
+    return 'Sleep(sleep: $sleep, totalMinutesAsleep: $totalMinutesAsleep, totalSleepRecords: $totalSleepRecords, totalMinutesAwake: $totalTimeInBed)';
   }
 
   @override
@@ -63,7 +63,7 @@ class Sleep {
         listEquals(other.sleep, sleep) &&
         other.totalMinutesAsleep == totalMinutesAsleep &&
         other.totalSleepRecords == totalSleepRecords &&
-        other.totalMinutesAwake == totalMinutesAwake;
+        other.totalTimeInBed == totalTimeInBed;
   }
 
   @override
@@ -71,6 +71,6 @@ class Sleep {
     return sleep.hashCode ^
         totalMinutesAsleep.hashCode ^
         totalSleepRecords.hashCode ^
-        totalMinutesAwake.hashCode;
+        totalTimeInBed.hashCode;
   }
 }
