@@ -5,10 +5,10 @@
     height: 70px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .home-container {
-    background: black
+    background: rgb(43, 43, 43);
 }
 .header-btn:hover {
     border-color: white;
@@ -18,14 +18,18 @@
     padding: 0px;
     margin: 0px;
     font-size: 44px;
-    margin-left: 30px;
+    margin-left: 0;
     color: white;
     font-family: 'Kaushan Script', cursive;
 }
 
 .home-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: auto;
-    margin-top: -50px;
+    z-index:-1;
+    background: rgb(43, 43, 43);
     width: 100vw;
     height: 100vh;    
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0, 0, 0, 0.8)), url('../../utils/images/yoga_pose.png') ;
@@ -35,23 +39,22 @@
 }
 
 .description {
-    font-size: 66px;
+    font-size: 48px;
     color: white;
     text-align: center;
     margin: 0px;
     margin-top: 10px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
 }
 
 .btn-section {
     position: absolute;
-    left: 38vw;
     top: 60vh;
 }
 
 .btn{
-    padding: 10px;
+    
     padding-right: 15px;
     padding-left: 15px;
     margin: 10px 20px 10px 20px;

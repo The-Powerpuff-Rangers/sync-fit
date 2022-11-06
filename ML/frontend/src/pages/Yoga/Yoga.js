@@ -231,6 +231,7 @@ function Yoga() {
 
   if (isStartPose) {
     return (
+      
       <div className="yoga-container">
         <div className="performance-container">
           <div className="pose-performance">
@@ -240,38 +241,33 @@ function Yoga() {
             <h4>Best: {bestPerform} s</h4>
           </div>
         </div>
-        <div>
+        <br></br>
+        <div className='sidebysidecontainer'>
           <Webcam
-            width="640px"
-            height="480px"
+            width="500em"
+            height="500em"
             id="webcam"
             ref={webcamRef}
-            style={{
-              position: "absolute",
-              left: 120,
-              top: 100,
-              padding: "0px",
-            }}
+            
+            
           />
           <canvas
             ref={canvasRef}
             id="my-canvas"
-            width="640px"
-            height="480px"
-            style={{
-              position: "absolute",
-              left: 120,
-              top: 100,
-              zIndex: 1,
-            }}
+            width="2em"
+            height="2em"
+            
           ></canvas>
           <div>
-            <img src={poseImages[currentPose]} className="pose-img" />
+            <img src={poseImages[currentPose]} className="pose-img" alt="pose_pic" />
           </div>
-        </div>
+          </div>
+          
+        <br></br>
         <button onClick={stopPose} className="secondary-btn">
           Stop Pose
         </button>
+        <br></br>
       </div>
     );
   }
@@ -284,9 +280,12 @@ function Yoga() {
         setCurrentPose={setCurrentPose}
       />
       <Instructions currentPose={currentPose} />
+      <center>
       <button onClick={startYoga} className="secondary-btn">
         Start Pose
       </button>
+      </center>
+      <br></br>
     </div>
   );
 }
