@@ -6,7 +6,7 @@ import json
 
 class scrap:
     def overview(self) -> dict:
-        overview = json.loads(open('json/api.json').read())
+        overview = json.loads(open('./json/api.json').read())
         return overview
 
     def recipes(self) -> dict:
