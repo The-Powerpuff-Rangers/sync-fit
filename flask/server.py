@@ -1,5 +1,6 @@
 from flask import Flask
 from scrap.scrap import scrap
+
 app = Flask(__name__)
 
 @app.route('/api/v1/')
