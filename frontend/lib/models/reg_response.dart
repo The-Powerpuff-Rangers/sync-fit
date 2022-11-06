@@ -40,7 +40,7 @@ class RegistrationResponse {
       status: map['status'] ?? '',
       message: map['message'] ?? '',
       token: map['token'] ?? '',
-      userId: map['userId'] ?? '',
+      userId: map['user_id'] ?? '',
     );
   }
 
