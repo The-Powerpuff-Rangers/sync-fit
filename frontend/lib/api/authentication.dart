@@ -12,9 +12,9 @@ class Authentication {
   Future<bool> login() async {
     try {
       final result =
-          await FlutterWebAuth2.authenticate(url: '$endpoint/login', callbackUrlScheme: 'syncfit');
+          await FlutterWebAuth2.authenticate(url: authpoint, callbackUrlScheme: 'syncfit');
 
-      final token = Uri.parse(result).queryParameters['t'];
+      final token = Uri.parse(result).queryParameters['code'];
       if (token != null) {
         await _flutterSecureStorage.write(key: 'token', value: token);
         return true;
