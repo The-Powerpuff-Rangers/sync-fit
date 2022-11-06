@@ -1,11 +1,12 @@
 # deploy a node.js app
-FROM node:latest
+FROM node:lts-alpine
 # Create app directory
 WORKDIR /usr/src/app
+COPY package*.json ./
+# Install app dependencies
+RUN npm install
 # Copy files
 COPY . .
-RUN npm install
 # Bundle app source
-COPY . .
 EXPOSE 8080
 CMD [ "node", "server.js" ]
