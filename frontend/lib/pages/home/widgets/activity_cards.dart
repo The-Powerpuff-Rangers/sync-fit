@@ -21,6 +21,8 @@ class ActivityCard extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               miniTile('Goal (cal)', '2000'),
               miniTile('Steps', '4,739'),
@@ -61,6 +63,7 @@ class ActivityCard extends ConsumerWidget {
 
   Column miniTile(String firstText, String second) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AutoSizeText(
           firstText,

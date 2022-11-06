@@ -5,28 +5,42 @@ import 'package:sync_fit/utils/syncfit_exception.dart';
 
 class Database {
   final Dio dio;
-  Database(this.dio);
+  final String userId;
+  Database(this.dio, this.userId);
 
   Future<void> getYellowCardData() async {
-    try {} on SyncFitException catch (e) {
+    try {
+      const endpoint = '';
+    } on SyncFitException catch (e) {
       log(e.toString());
     }
   }
 
   Future<void> getSleepCardData() async {
-    try {} on SyncFitException catch (e) {
+    try {
+      const endpoint = '/fitness/sleep';
+      final response = await dio.get(
+        endpoint,
+        options: Options(headers: {'userId': userId}),
+      );
+      log(response.data);
+    } on SyncFitException catch (e) {
       log(e.toString());
     }
   }
 
   Future<void> getSpo2CardData() async {
-    try {} on SyncFitException catch (e) {
+    try {
+      const endpoint = '/fitness/spo2';
+    } on SyncFitException catch (e) {
       log(e.toString());
     }
   }
 
   Future<void> getHeartRateCardData() async {
-    try {} on SyncFitException catch (e) {
+    try {
+      const endpoint = '/fitness/heartrate';
+    } on SyncFitException catch (e) {
       log(e.toString());
     }
   }
