@@ -39,7 +39,8 @@ class scrap:
         for a in soup.find_all("a"):
             link = a.get("href")
             link = link if not re.match(
-                r'https://www.thinkinglifter.com/', link) and not re.match(r"#", link) else None
+                r'https://www.thinkinglifter.com/', link) and not re.match(r"#", link) and re.match(
+                r'http://www.precisionnutrition.com/', link) else None
             if link:
                 data['articles'].append(link)
         return data
