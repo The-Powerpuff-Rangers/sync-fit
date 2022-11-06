@@ -1,7 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sync_fit/models/form.dart';
+import 'package:sync_fit/pages/home/home_page.dart';
 import 'package:sync_fit/pages/registration_form/widgets/form_widget.dart';
+import 'package:sync_fit/providers/providers.dart';
 import 'package:sync_fit/utils/app_colors.dart';
 
 final userEmailControllerProvider = Provider.autoDispose<TextEditingController>((ref) {
@@ -88,7 +92,19 @@ class FormScreen extends ConsumerWidget {
                       const SizedBox(height: 30),
                       Center(
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            final data = FormModel(
+                                userEmail: userEmailController.text,
+                                mobileNumber: mobileNumberController.text,
+                                doctorEmailAdress: doctorEmailController.text,
+                                doctorName: doctorNameController.text,
+                                authCode: authCode);
+                            final router = GoRouter.of(context);
+                            final result = await ref.read(authApiProvider).completeRegistration(data);
+                            if (result) {
+                              router.go(HomePage.routename);
+                            }
+                          },
                           textColor: Colors.white,
                           textTheme: ButtonTextTheme.primary,
                           minWidth: size.maxWidth / 2,

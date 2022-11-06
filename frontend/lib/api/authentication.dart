@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:sync_fit/models/form.dart';
+import 'package:sync_fit/models/reg_response.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
 
 import '../utils/constants.dart';
@@ -32,7 +34,20 @@ class Authentication {
     await _flutterSecureStorage.delete(key: 'token');
   }
 
-  Future<bool> completeRegistration() async {
+  Future<bool> completeRegistration(FormModel data) async {
+    try {
+      final response = await dio.post('$endpoint/newuser', data: data.toMap());
+      final modelResponse = RegistrationResponse.fromMap(response.data);
+      if (modelResponse.status == 'success') {
+        await _flutterSecureStorage.write(key: 'token', value: modelResponse.token);
+        return true;
+      } else {
+        return false;
+      }
+    } on SyncFitException catch (e) {
+      log(e.toString());
+      return false;
+    }
     return false;
   }
 }
