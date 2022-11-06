@@ -32,6 +32,7 @@ router.post("/newuser", async (req, res) => {
       status: "success",
       message: "FuckOff",
       token: tokenData.access_token,
+      user_id: tokenData.user_id,
     });
   } catch (err) {
     console.log("Something went wrong during creating a new user");
