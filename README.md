@@ -25,6 +25,7 @@
  ![](https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white)
  ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
  ![](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+ 
   
 ## Table of Contents
 
@@ -48,7 +49,7 @@ We were motivated by HackCBS 5.0 to see a widespread issue in health care: shari
 
 ## What it does?
 
-When consumers are feeling uneasy or when their smartwatch detects a worrying change in their vital signs, <b>SyncFit</b> gives them a way to log their health situation. When you have an appointment with your healthcare provider, the user can use smart wearables to generate memos and share them with them. The memo's information is tailored to your health and what the doctor needs to know. As a result, your next meeting will be more fruitful and efficient because they will be able to inquire further and ask more better questions. Our app also offers many more services to allow our clients to lead a happy and healthy life, we offer an <b>Interactive Fun AI Yoga Trainer, Daily Fitness Recipies and Health Related Articles</b> to spread awareness about the need of exercise and good nutrition. We also provide a clean, modern and minimalistic approach to UI/UX to provide our users with a less bloated experience.
+When consumers are feeling unwell and want a hasslefree and cost effective way of sending reports to their doctor, <b>SyncFit</b> gives them a way to log their health situation. When you have an appointment with your healthcare provider, the user can use smart wearables to generate memos and share them with them. The memo's information is tailored to your health and what the doctor needs to know. As a result, your next meeting will be more fruitful and efficient because they will be able to inquire further and ask more better questions. Our app also offers many more services to allow our clients to lead a happy and healthy life, we offer an <b>Interactive Fun AI Yoga Trainer, Daily Fitness Recipies and Health Related Articles</b> to spread awareness about the need of exercise and good nutrition. We also provide a clean, modern and minimalistic approach to UI/UX to provide our users with a less bloated experience.
 
 ## How we built it?
 
