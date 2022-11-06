@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:sync_fit/models/sleep.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
 
 import '../pages/login/providers/auth_provider.dart';
@@ -26,29 +28,25 @@ class Database {
     }
   }
 
-  Future<void> getSleepCardData() async {
+  Future<Sleep> getSleepCardData() async {
     try {
-      const endpoint = '/fitness/sleep';
+      final endpoint = '/fitness/sleep/$userId/${DateFormat("yyyymmdd").format(DateTime.now())}';
       final response = await dio.get(
         endpoint,
-        queryParameters: {
-          'userId': userId,
-        },
-        options: Options(
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        ),
       );
-      log(response.data);
+      return Sleep.fromMap(response.data);
     } on SyncFitException catch (e) {
       log(e.toString());
+      rethrow;
     }
   }
 
   Future<void> getSpo2CardData() async {
     try {
-      const endpoint = '/fitness/spo2';
+      final endpoint = '/fitness/spo2/$userId/${DateTime.now()}';
+      final response = await dio.get(
+        endpoint,
+      );
     } on SyncFitException catch (e) {
       log(e.toString());
     }
