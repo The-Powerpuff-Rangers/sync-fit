@@ -43,7 +43,7 @@ class Database {
 
   Future<void> getSpo2CardData() async {
     try {
-      final endpoint = '/fitness/spo2/${DateFormat("yyyymmdd").format(DateTime.now())}';
+      final endpoint = '/fitness/spo2/$userId/${DateFormat("yyyymmdd").format(DateTime.now())}';
       final response = await dio.get(
         endpoint,
       );
