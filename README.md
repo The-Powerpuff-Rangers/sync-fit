@@ -62,13 +62,7 @@ When consumers are feeling unwell and want a hasslefree and cost effective way o
   We made our YOGA AI by using state of the art MoveNet(UltraFast pose detection technique) in python and then converted to JavaScript for better integration with our app.
   
   The recipes and health articles are displayed by using a web scraper made in python.
-  
-  Languages Used:
-  - JavaScript
-  - Dart
-  - Python  
-
-  
+   
 ## Challenges we ran into?
 
 Even though our team had knowledge of various techstacks, we still had quite a hurdles.
