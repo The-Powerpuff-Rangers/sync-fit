@@ -9,6 +9,9 @@ jobs:
   flutter_build_android:
     name: Build Flutter (android) apps
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v2
@@ -29,6 +32,9 @@ jobs:
   flutter_build_ios:
     name: Build Flutter (iOS) apps
     runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
     - uses: actions/checkout@v3
     - uses: subosito/flutter-action@v2
@@ -42,6 +48,9 @@ jobs:
   flutter_build_windows:
     name: Build Flutter (windows) apps
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
     - uses: actions/checkout@v3
     - uses: subosito/flutter-action@v2
@@ -60,6 +69,9 @@ jobs:
   flutter_build_linux:
     name: Build Flutter (linux) apps
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
     - uses: actions/checkout@v3
     - uses: subosito/flutter-action@v2
