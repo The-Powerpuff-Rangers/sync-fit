@@ -81,12 +81,17 @@ router.get("/breathrate/:id/:date", async (req, res) => {
     const user = await User.findOne({ userId });
     const getBR = await getBreathingRate(user.acs_token, userId, date);
     if (getBR.data.br !== []) {
-      const resultJson = {};
-      resultJson.value = getBR.data.br[0].value;
-      resultJson.value = getBR.date.br[0].dateTime;
-      await User.updateOne({ userId }, { $push: { heartRate: resultJson } });
+      const resultJson = {
+        breathingRate: getBR.data.br[0].value.breathingRate,
+        date: getBR.data.br[0].dateTime,
+      };
+      await User.updateOne(
+        { userId },
+        { $push: { breathingRate: resultJson } }
+      );
+      res.status(200).json(resultJson);
     }
-    res.status(200).json(resultJson);
+    res.status(200).json({ status: "failure", message: "No Breathing Data" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -99,20 +104,36 @@ router.get("/heartratevar/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.findOne({ userId });
     const getHRV = await getHeartRateVar(user.acs_token, userId, date);
-    res.status(200).json(getHRV.data);
+    if (getHRV.hrv.length !== 0) {
+      const resultJson = {
+        dailyRmssd: getHRV.hrv[0].value.dailyRmssd,
+        deepRmssd: getHRV.hrv[0].value.deepRmssd,
+        date: getHRV.hrv[0].dateTime,
+      };
+      await User.updateOne({ userId }, { $push: { heartRateVar: resultJson } });
+      res.status(200).json(resultJson);
+    }
+    res.status(200).json({
+      status: "failure",
+      message: "No Heart Rate Variability Data Found",
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
   }
 });
 
-router.get("/water/:id", async (req, res) => {
+router.get("/water/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
     const user = await User.findOne({ userId });
-    const getWater = await getNutrition(user.acs_token, userId);
-    res.status(200).json(getWater.data);
+    const getWater = await getNutrition(user.acs_token, userId, date);
+    const resultData = {
+      waterLog: getWater.summary.water,
+    };
+    await User.updateOne({ userId }, { $push: { nutrition: resultData } });
+    res.status(200).json(resultData);
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -125,7 +146,27 @@ router.get("/sleep/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.findOne({ userId });
     const getsleep = await getSleep(user.acs_token, userId, date);
-    res.status(200).json(getsleep.data.sleep);
+    console.log(getsleep.sleep.length === 0);
+    if (getsleep.sleep.length !== 0) {
+      const resultData = {
+        date,
+        awakeCount: getsleep.sleep[0].awakeCount,
+        awakeDuration: getsleep.sleep[0].awakeDuration,
+        awakeningsCount: getsleep.sleep[0].awakeningsCount,
+        duration: getsleep.sleep[0].duration,
+        efficiency: getsleep.sleep[0].efficiency,
+        minutesAsleep: getsleep.sleep[0].minutesAsleep,
+        minutesAwake: getsleep.sleep[0].minutesAwake,
+        restlessCount: getsleep.sleep[0].restlessCount,
+        restlessDuration: getsleep.sleep[0].restlessDuration,
+        totalMinutesAsleep: getsleep.summary.totalMinutesAsleep,
+        totalSleepRecords: getsleep.summary.totalSleepRecords,
+        totalTimeInBed: getsleep.summary.totalTimeInBed,
+      };
+      await User.updateOne({ userId }, { $push: { sleep: resultData } });
+      res.status(200).json(resultData);
+    }
+    res.status(200).json({ status: "failure", message: "No sleep Data Found" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -138,7 +179,17 @@ router.get("/spo2/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.findOne({ userId });
     const getspo2 = await getSpo2(user.acs_token, userId, date);
-    res.status(200).json(getspo2.data);
+    if (Object.keys(getspo2).length !== 0) {
+      const resultData = {
+        date: getspo2.dateTime,
+        min: getspo2.value.min,
+        avg: getspo2.value.avg,
+        max: getspo2.value.max,
+      };
+      await User.updateOne({ userId }, { $push: { spo2: resultData } });
+      res.status(200).json(resultData);
+    }
+    res.status(200).json({ status: "failure", message: "No Spo2 Data Found" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -151,7 +202,23 @@ router.get("/temp/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.findOne({ userId });
     const gettemp = await getTemp(user.acs_token, userId, date);
-    res.status(200).json(gettemp.data);
+    if (gettemp.tempCore.length !== 0) {
+      const resultData = {
+        from: {
+          dateTime: gettemp.tempCore[0].dateTime,
+          temp: gettemp.tempCore[0].value,
+        },
+        to: {
+          dateTime: gettemp.tempCore[1].dateTime,
+          temp: gettemp.tempCore[1].value,
+        },
+      };
+      await User.updateOne({ userId }, { $push: { temp: resultData } });
+      res.status(200).json(resultData);
+    }
+    res
+      .status(200)
+      .json({ status: "failure", message: "No Temp Core Data Found" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
@@ -164,7 +231,18 @@ router.get("/vo2/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.findOne({ userId });
     const getvo2 = await getVo2(user.acs_token, userId, date);
-    res.status(200).json(getvo2.data);
+    if (getvo2 !== "no_data") {
+      const resultData = {
+        date: cardioScore[0].dateTime,
+        vo2Max: cardioScore[0].value.vo2Max,
+      };
+      await User.updateOne({ userId }, { $push: { vo2: resultData } });
+      res.status(200).json(resultData);
+    }
+    res.status(200).json({
+      status: "failure",
+      message: "You Don't have Access to Vo2 or No Data Found",
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });

@@ -99,8 +99,14 @@ const getVo2 = async (accessToken, userId, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userVo2Data;
+    return userVo2Data.data;
   } catch (error) {
+    if (
+      error.response.data ===
+      "This application does not have permission to READ CARDIO_FITNESS data. Visit https://dev.fitbit.com/docs/oauth2 for more information on the Fitbit Web API authorization process."
+    ) {
+      return "no_data";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -129,22 +135,22 @@ const getHeartRateVar = async (accessToken, userId, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userHrvData;
+    return userHrvData.data;
   } catch (error) {
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
 };
 
-const getNutrition = async (accessToken, userId) => {
+const getNutrition = async (accessToken, userId, date) => {
   try {
-    const baseUrl = `https://api.fitbit.com/1/user/${userId}/foods/log/water/date/today/1d.json`;
+    const baseUrl = `https://api.fitbit.com/1/user/${userId}/foods/log/water/date/${date}.json`;
     const userWaterData = await axios.get(baseUrl, {
       headers: {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userWaterData;
+    return userWaterData.data;
   } catch (error) {
     console.log("Something is wrong with the fitbit request");
     console.log(error);
@@ -159,7 +165,7 @@ const getSleep = async (accessToken, userId, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userSleepData;
+    return userSleepData.data;
   } catch (error) {
     console.log("Something is wrong with the fitbit request");
     console.log(error);
@@ -174,7 +180,7 @@ const getSpo2 = async (accessToken, userId, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userSpo2Data;
+    return userSpo2Data.data;
   } catch (error) {
     console.log("Something is wrong with the fitbit request");
     console.log(error);
@@ -189,7 +195,7 @@ const getTemp = async (accessToken, userId, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userTempData;
+    return userTempData.data;
   } catch (error) {
     console.log("Something is wrong with the fitbit request");
     console.log(error);
