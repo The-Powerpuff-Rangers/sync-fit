@@ -18,8 +18,8 @@ const {
 router.get("/heartrate/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await User.find({ userId });
-    const getHR = await getHeartRate(user[0].acs_token, userId);
+    const user = await User.findOne({ userId });
+    const getHR = await getHeartRate(user.acs_token, userId);
     const resultJson = getHR.data["activities-heart"][0].value.heartRateZones;
     const resultData = {};
     for (let i = 0; i < 4; i++) {
@@ -78,8 +78,8 @@ router.get("/breathrate/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getBR = await getBreathingRate(user[0].acs_token, userId, date);
+    const user = await User.findOne({ userId });
+    const getBR = await getBreathingRate(user.acs_token, userId, date);
     if (getBR.data.br !== []) {
       const resultJson = {};
       resultJson.value = getBR.data.br[0].value;
@@ -97,8 +97,8 @@ router.get("/heartratevar/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getHRV = await getHeartRateVar(user[0].acs_token, userId, date);
+    const user = await User.findOne({ userId });
+    const getHRV = await getHeartRateVar(user.acs_token, userId, date);
     res.status(200).json(getHRV.data);
   } catch (error) {
     console.log(error);
@@ -110,8 +110,8 @@ router.get("/water/:id", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getWater = await getNutrition(user[0].acs_token, userId);
+    const user = await User.findOne({ userId });
+    const getWater = await getNutrition(user.acs_token, userId);
     res.status(200).json(getWater.data);
   } catch (error) {
     console.log(error);
@@ -123,8 +123,8 @@ router.get("/sleep/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getsleep = await getSleep(user[0].acs_token, userId, date);
+    const user = await User.findOne({ userId });
+    const getsleep = await getSleep(user.acs_token, userId, date);
     res.status(200).json(getsleep.data.sleep);
   } catch (error) {
     console.log(error);
@@ -136,8 +136,8 @@ router.get("/spo2/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getspo2 = await getSpo2(user[0].acs_token, userId, date);
+    const user = await User.findOne({ userId });
+    const getspo2 = await getSpo2(user.acs_token, userId, date);
     res.status(200).json(getspo2.data);
   } catch (error) {
     console.log(error);
@@ -149,8 +149,8 @@ router.get("/temp/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const gettemp = await getTemp(user[0].acs_token, userId, date);
+    const user = await User.findOne({ userId });
+    const gettemp = await getTemp(user.acs_token, userId, date);
     res.status(200).json(gettemp.data);
   } catch (error) {
     console.log(error);
@@ -162,8 +162,8 @@ router.get("/vo2/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getvo2 = await getVo2(user[0].acs_token, userId, date);
+    const user = await User.findOne({ userId });
+    const getvo2 = await getVo2(user.acs_token, userId, date);
     res.status(200).json(getvo2.data);
   } catch (error) {
     console.log(error);
@@ -175,12 +175,8 @@ router.get("/yellowbar/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getYellowCardData = await getActivity(
-      userId,
-      user[0].acs_token,
-      date
-    );
+    const user = await User.findOne({ userId });
+    const getYellowCardData = await getActivity(userId, user.acs_token, date);
     res.status(200).json({
       status: "success",
       stepGoal: getYellowCardData.data.goals.steps,

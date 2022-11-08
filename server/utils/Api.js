@@ -2,7 +2,6 @@ const axios = require("axios");
 require("dotenv");
 
 // Extra api's for getting the Data
-
 const getAccessToken = async (authCode) => {
   try {
     const clientCode = process.env.BASE64AUTH;
