@@ -481,18 +481,18 @@ router.get("/yellowbar/:id/:date", async (req, res) => {
       const getYellowCardData = await getActivity(userId, user.acs_token, date);
       res.status(200).json({
         status: "success",
-        stepGoal: getYellowCardData.data.goals.steps,
-        step: getYellowCardData.data.summary.steps,
-        distance: getYellowCardData.data.summary.distances[0].distance,
-        calories: getYellowCardData.data.summary.caloriesOut,
+        stepGoal: getYellowCardData.goals.steps,
+        step: getYellowCardData.summary.steps,
+        distance: getYellowCardData.summary.distances[0].distance,
+        calories: getYellowCardData.summary.caloriesOut,
       });
     }
     res.status(200).json({
       status: "success",
-      stepGoal: getYellowCardData.data.goals.steps,
-      step: getYellowCardData.data.summary.steps,
-      distance: getYellowCardData.data.summary.distances[0].distance,
-      calories: getYellowCardData.data.summary.caloriesOut,
+      stepGoal: getYellowCardData.goals.steps,
+      step: getYellowCardData.summary.steps,
+      distance: getYellowCardData.summary.distances[0].distance,
+      calories: getYellowCardData.summary.caloriesOut,
     });
   } catch (error) {
     console.log(error);
