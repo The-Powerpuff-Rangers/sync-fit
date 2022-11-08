@@ -66,7 +66,7 @@ const getActivity = async (userId, accessToken, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userAcData;
+    return userAcData.data;
   } catch (error) {
     if (error.response.data.errors[0].errorType === "expired_token") {
       return "expired_token";
@@ -84,8 +84,11 @@ const getBreathingRate = async (accessToken, userId, date) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userBrData;
+    return userBrData.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -101,6 +104,9 @@ const getVo2 = async (accessToken, userId, date) => {
     });
     return userVo2Data.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     if (
       error.response.data ===
       "This application does not have permission to READ CARDIO_FITNESS data. Visit https://dev.fitbit.com/docs/oauth2 for more information on the Fitbit Web API authorization process."
@@ -120,8 +126,11 @@ const getHeartRate = async (accessToken, userId) => {
         authorization: `Bearer ${accessToken}`,
       },
     });
-    return userHrData;
+    return userHrData.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -152,6 +161,9 @@ const getNutrition = async (accessToken, userId, date) => {
     });
     return userWaterData.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -167,6 +179,9 @@ const getSleep = async (accessToken, userId, date) => {
     });
     return userSleepData.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -182,6 +197,9 @@ const getSpo2 = async (accessToken, userId, date) => {
     });
     return userSpo2Data.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -197,6 +215,9 @@ const getTemp = async (accessToken, userId, date) => {
     });
     return userTempData.data;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }

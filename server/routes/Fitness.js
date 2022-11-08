@@ -20,7 +20,7 @@ router.get("/heartrate/:id", async (req, res) => {
     const userId = req.params.id;
     const user = await User.findOne({ userId });
     const getHR = await getHeartRate(user.acs_token, userId);
-    const resultJson = getHR.data["activities-heart"][0].value.heartRateZones;
+    const resultJson = getHR["activities-heart"][0].value.heartRateZones;
     const resultData = {};
     for (let i = 0; i < 4; i++) {
       const data = resultJson[i].name;
@@ -54,17 +54,17 @@ router.get("/activity/:id/:date", async (req, res) => {
       );
       const getAc = await getActivity(userId, user[0].acs_token, date);
       const myActivity = {
-        activityCalories: getAc.data.summary.activityCalories,
-        caloriesBMR: getAc.data.summary.caloriesBMR,
-        caloriesOut: getAc.data.summary.caloriesOut,
+        activityCalories: getAc.summary.activityCalories,
+        caloriesBMR: getAc.summary.caloriesBMR,
+        caloriesOut: getAc.summary.caloriesOut,
       };
       await User.updateOne({ userId }, { $push: { activity: myActivity } });
       res.status(200).json(myActivity);
     }
     const myActivity = {
-      activityCalories: getAc.data.summary.activityCalories,
-      caloriesBMR: getAc.data.summary.caloriesBMR,
-      caloriesOut: getAc.data.summary.caloriesOut,
+      activityCalories: getAc.summary.activityCalories,
+      caloriesBMR: getAc.summary.caloriesBMR,
+      caloriesOut: getAc.summary.caloriesOut,
     };
     await User.updateOne({ userId }, { $push: { activity: myActivity } });
     res.status(200).json(myActivity);
@@ -80,10 +80,10 @@ router.get("/breathrate/:id/:date", async (req, res) => {
     const date = req.params.date;
     const user = await User.findOne({ userId });
     const getBR = await getBreathingRate(user.acs_token, userId, date);
-    if (getBR.data.br !== []) {
+    if (getBR.br.length !== 0) {
       const resultJson = {
-        breathingRate: getBR.data.br[0].value.breathingRate,
-        date: getBR.data.br[0].dateTime,
+        breathingRate: getBR.br[0].value.breathingRate,
+        date: getBR.br[0].dateTime,
       };
       await User.updateOne(
         { userId },
@@ -91,7 +91,9 @@ router.get("/breathrate/:id/:date", async (req, res) => {
       );
       res.status(200).json(resultJson);
     }
-    res.status(200).json({ status: "failure", message: "No Breathing Data" });
+    res
+      .status(200)
+      .json({ status: "failure", message: "No Breathing Data Found" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: error });
