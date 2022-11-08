@@ -10,7 +10,7 @@ const getAccessToken = async (authCode) => {
       client_id: process.env.ClientId,
       code: `${authCode}`,
       grant_type: "authorization_code",
-      redirect_uri: "http://localhost:3000",
+      redirect_uri: "syncfit://?",
     }).toString();
     const baseUrl = `https://api.fitbit.com/oauth2/token?${params}`;
     const jsonData = await axios.post(baseUrl, data, {
