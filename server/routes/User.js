@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAccessToken, userData } = require("../utils/Api.js");
+const { getAccessToken, userData, getNewAccess } = require("../utils/Api.js");
 const User = require("../models/User");
 
 // Checking Api EndPoint

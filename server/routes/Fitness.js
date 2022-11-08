@@ -12,6 +12,7 @@ const {
   getSpo2,
   getTemp,
   getVo2,
+  getNewAccess,
 } = require("../utils/Api");
 
 router.get("/heartrate/:id", async (req, res) => {
@@ -37,8 +38,29 @@ router.get("/activity/:id/:date", async (req, res) => {
   try {
     const userId = req.params.id;
     const date = req.params.date;
-    const user = await User.find({ userId });
-    const getAc = await getActivity(userId, user[0].acs_token, date);
+    const user = await User.findOne({ userId });
+    const getAc = await getActivity(userId, user.acs_token, date);
+    if (getAc === "expired_token") {
+      console.log("helo");
+      const getNewToken = await getNewAccess(user.rfh_token);
+      await User.updateOne(
+        { userId },
+        {
+          $set: {
+            rfh_token: getNewToken.refresh_token,
+            acs_token: getNewToken.access_token,
+          },
+        }
+      );
+      const getAc = await getActivity(userId, user[0].acs_token, date);
+      const myActivity = {
+        activityCalories: getAc.data.summary.activityCalories,
+        caloriesBMR: getAc.data.summary.caloriesBMR,
+        caloriesOut: getAc.data.summary.caloriesOut,
+      };
+      await User.updateOne({ userId }, { $push: { activity: myActivity } });
+      res.status(200).json(myActivity);
+    }
     const myActivity = {
       activityCalories: getAc.data.summary.activityCalories,
       caloriesBMR: getAc.data.summary.caloriesBMR,
@@ -48,7 +70,7 @@ router.get("/activity/:id/:date", async (req, res) => {
     res.status(200).json(myActivity);
   } catch (error) {
     console.log(error);
-    res.status(400).json({ success: false, message: error });
+    res.status(400).json({ success: false, message: error.response.data });
   }
 });
 
@@ -160,7 +182,7 @@ router.get("/yellowbar/:id/:date", async (req, res) => {
       date
     );
     res.status(200).json({
-      message: "success",
+      status: "success",
       stepGoal: getYellowCardData.data.goals.steps,
       step: getYellowCardData.data.summary.steps,
       distance: getYellowCardData.data.summary.distances[0].distance,

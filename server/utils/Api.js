@@ -11,7 +11,7 @@ const getAccessToken = async (authCode) => {
       client_id: process.env.ClientId,
       code: `${authCode}`,
       grant_type: "authorization_code",
-      redirect_uri: "syncfit://?",
+      redirect_uri: "http://localhost:3000",
     }).toString();
     const baseUrl = `https://api.fitbit.com/oauth2/token?${params}`;
     const jsonData = await axios.post(baseUrl, data, {
@@ -42,6 +42,23 @@ const userData = async (accessToken, userId) => {
   }
 };
 
+const getNewAccess = async (ref_token) => {
+  const clientCode = process.env.BASE64AUTH;
+  const data = {};
+  const params = new URLSearchParams({
+    grant_type: "refresh_token",
+    refresh_token: ref_token,
+  }).toString();
+  const baseUrl = `https://api.fitbit.com/oauth2/token?${params}`;
+  const newAccessToken = await axios.post(baseUrl, data, {
+    headers: {
+      Authorization: `Basic ${clientCode}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  });
+  return newAccessToken.data;
+};
+
 const getActivity = async (userId, accessToken, date) => {
   try {
     const baseUrl = `https://api.fitbit.com/1/user/${userId}/activities/date/${date}.json`;
@@ -52,6 +69,9 @@ const getActivity = async (userId, accessToken, date) => {
     });
     return userAcData;
   } catch (error) {
+    if (error.response.data.errors[0].errorType === "expired_token") {
+      return "expired_token";
+    }
     console.log("Something is wrong with the fitbit request");
     console.log(error);
   }
@@ -180,6 +200,7 @@ const getTemp = async (accessToken, userId, date) => {
 module.exports = {
   getAccessToken,
   userData,
+  getNewAccess,
   getActivity,
   getBreathingRate,
   getHeartRate,
