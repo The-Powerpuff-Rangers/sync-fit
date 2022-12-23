@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//mongo db structure
 const UserSchema = new mongoose.Schema({
   userId: {
     type: String,
