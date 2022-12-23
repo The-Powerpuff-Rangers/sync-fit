@@ -130,7 +130,7 @@ Although this project is ready, there is always scope for more improvement
 
 ## Contributing
 
-Since this project was built during HackCBS 5.0, we would be seldomly improving this product. However we encourage you to contribute this repo and take it more as a tutorial of how this project was built. If you have any suggesstions or want to make some changes, feel free to create a PR or an issue.
+Since this project was built during Hack-a-Miner 1.0, we would be seldomly improving this product. However we encourage you to contribute this repo and take it more as a tutorial of how this project was built. If you have any suggesstions or want to make some changes, feel free to create a PR or an issue.
 
 ## License
 
