@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sync_fit/pages/error_screen.dart';
-import 'package:sync_fit/pages/home/home_page.dart';
 import 'package:sync_fit/pages/login/screens/login_screen.dart';
 import 'package:sync_fit/pages/splash/splash_screen.dart';
 import 'package:sync_fit/providers/providers.dart';
@@ -74,7 +73,7 @@ class AuthChecker extends ConsumerWidget {
     return authChecker.when(
       data: (data) {
         if (data) {
-          return HomePage();
+          return const LoginScreen();
         }
         return const LoginScreen();
       },

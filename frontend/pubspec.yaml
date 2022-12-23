@@ -51,6 +51,7 @@ dependencies:
   url_launcher: ^6.1.6
   permission_handler: ^10.2.0
   flutter_inappwebview: ^5.7.1
+  neopop: ^1.0.2
 
 dev_dependencies:
   flutter_test:
