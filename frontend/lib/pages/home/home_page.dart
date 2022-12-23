@@ -15,6 +15,7 @@ import 'package:sync_fit/pages/home/widgets/web_cards.dart';
 import 'package:sync_fit/pages/settings/settings_screen.dart';
 import 'package:sync_fit/pages/webview/webview.dart';
 import 'package:sync_fit/utils/app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final currIndexProvider = StateProvider<int>((ref) {
   return 0;
@@ -192,19 +193,21 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ),
                 WebCards(
-                  onTap: () {},
+                  onTap: () async {
+                    await launchUrl(Uri.parse('https://www.healthline.com/nutrition/17-tips-to-sleep-better'));
+                  },
                   title: 'How to get a good night\'s sleep',
                 ),
                 const SizedBox(height: 30),
-                const AutoSizeText(
-                  'Recipe of the day',
-                  style: TextStyle(
-                    fontFamily: 'SF-Pro Display',
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
+                // const AutoSizeText(
+                //   'Recipe of the day',
+                //   style: TextStyle(
+                //     fontFamily: 'SF-Pro Display',
+                //     fontSize: 30,
+                //     fontWeight: FontWeight.w600,
+                //     color: Colors.black,
+                //   ),
+                // ),
               ],
             ),
           ),

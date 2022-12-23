@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:neopop/neopop.dart';
 import 'package:sync_fit/pages/registration_form/form_screen.dart';
 import 'package:sync_fit/providers/providers.dart';
+import 'package:sync_fit/utils/app_colors.dart';
 import 'package:sync_fit/utils/syncfit_exception.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -50,8 +53,10 @@ class LoginScreen extends ConsumerWidget {
                 ),
                 const Spacer(),
                 Center(
-                  child: InkWell(
-                    onTap: () async {
+                  child: NeoPopButton(
+                    color: AppColors.oceanBlue.withOpacity(0.2),
+                    onTapUp: () async {
+                      HapticFeedback.vibrate();
                       final route = GoRouter.of(context);
                       try {
                         final result = await auth.login();
@@ -60,21 +65,21 @@ class LoginScreen extends ConsumerWidget {
                           route.go(FormScreen.routename, extra: result);
                         }
                       } on SyncFitException catch (e) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(SnackBar(content: Text('Error registering: $e')));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error registering: $e')));
                       }
                     },
+                    onTapDown: () => HapticFeedback.vibrate(),
                     child: Container(
                       width: size.maxWidth * 0.6,
                       height: size.maxHeight / 11,
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1,
-                            strokeAlign: StrokeAlign.inside,
-                            style: BorderStyle.solid,
-                          ),
+                          // border: Border.all(
+                          //   color: Colors.black,
+                          //   width: 1,
+                          //   strokeAlign: StrokeAlign.inside,
+                          //   style: BorderStyle.solid,
+                          // ),
                           borderRadius: BorderRadius.circular(36)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,8 +87,8 @@ class LoginScreen extends ConsumerWidget {
                           Image.asset('assets/icons/fitbit.png'),
                           AutoSizeText(
                             'Signin with Fitbit',
-                            style: textTheme.subtitle2!.copyWith(
-                                fontFamily: 'SF-Pro Display', fontWeight: FontWeight.w600),
+                            style: textTheme.subtitle2!
+                                .copyWith(fontFamily: 'SF-Pro Display', fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
