@@ -109,8 +109,7 @@ Although this project is ready, there is always scope for more improvement
 - Nutrition profile analysis using custom neural network trained on NHANES OpenSource Dataset.
 
 ## 📸 Screenshots Time
-  <img src="https://user-images.githubusercontent.com/74452705/200141919-bd37a505-ff21-4675-9ace-0bdfc52fb67b.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200141933-80888da6-0461-44f1-9c40-2597efd4a6df.png" height=500px >
-  <img src="https://user-images.githubusercontent.com/74452705/200141967-f0ad10e3-961a-49b6-84dc-4b6b494814f2.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200141977-52439775-0fc1-43fb-8a23-58814406aa40.png" height=500px >
+  <img src ="https://user-images.githubusercontent.com/62933155/209416291-d352908b-507c-4b53-b624-4d8462660303.png" height=500px > <img src="https://user-images.githubusercontent.com/74452705/200141967-f0ad10e3-961a-49b6-84dc-4b6b494814f2.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200141977-52439775-0fc1-43fb-8a23-58814406aa40.png" height=500px >
   <img src="https://user-images.githubusercontent.com/74452705/200141993-825dca0d-d98e-43cc-aa01-0d39f1952aa3.png" height=500px >  <img src="https://user-images.githubusercontent.com/74452705/200142006-cf6f14e5-bb90-4a50-8cd1-4d54feef7c4b.png" height=500px > 
 
 ## Revenue Point
