@@ -68,8 +68,11 @@ Even though our team had knowledge of various techstacks, we still had quite a h
 
 [Biswa](https://github.com/2002Bishwajeet) - For him, it was his first time creating such an extensive Flutter App with multiple modules and AI integration. He worked on UI and connecting the backend with the frontend.
 
+[Harsh](https://github.com/harshsH-28) - For him, working with docker was a first time experience and he had quite a bit difficulty integrating FitBit API in NodeJs. Along with Biswa he connected the backend with frontend.  
+  
+[Khushiyant](https://github.com/Khushiyant) - He worked on designing the UI in Figma and that it was his first time using the software. He also dockerised the application which was a difficult task as he had to compose two backends. 
 
-[Vidhu](https://github.com/Kranium2002) - He worked on the YOGA AI model, the UI of the app. Using movenet was a new challenge for him. Making the model compatible with NodeJs and resolving errors was also a challenging task. 
+[Vidhu](https://github.com/Kranium2002) - He worked on the YOGA AI model and using movenet was a new challenge for him. Making the model compatible with NodeJs and resolving errors was also a challenging task.
   
 ## Accomplishments that we're proud of?
 
@@ -93,6 +96,8 @@ Everyone learned something.
 - **Biswa** learned about deploying and setting up a production server and making a complex UI.
 
 - **Harsh** learned how to handle FitBit API and how to integrate AI with his app.
+
+- **Khushiyant** learned more about Docker and web scraping.
 
 - **Vidhu** learned how to use MoveNet and how to make it compatible with a Node backend.
 
